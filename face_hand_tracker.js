@@ -13,12 +13,11 @@ const options={
 
 let context = canvas.getContext("2d");
 
-//handTrackオブジェクトでオプションがロードれたときthen()=その時（ロードされたとき（）内を実行する）：非同期処理
 handTrack.load(options).then(function(modelData){
     model = modelData;
     console.log(model);
 
-    //webカメラを起動する
+    //webカメラ起動
     handTrack.startVideo(video).then(function(status){
         if(status){
             console.log(status);
@@ -30,7 +29,6 @@ handTrack.load(options).then(function(modelData){
 })
 
 function startDetection(){
-    //render=表示する
     model.detect(video).then((predictions)=>{
         model.renderPredictions(predictions,canvas,context,video);
         requestAnimationFrame(startDetection);
